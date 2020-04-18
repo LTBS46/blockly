@@ -1,20 +1,16 @@
 {
-  "name": "blockly",
-  "version": "3.20200402.1",
+  "name": "blockly - desktop",
+  "version": "1.0.0",
   "description": "Blockly is a library for building visual programming editors.",
   "keywords": [
     "blockly"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/google/blockly.git"
+    "url": "https://github.com/LTBS46/blockly.git"
   },
   "bugs": {
-    "url": "https://github.com/google/blockly/issues"
-  },
-  "homepage": "https://developers.google.com/blockly/",
-  "author": {
-    "name": "Neil Fraser"
+    "url": "https://github.com/LTBS46/blockly/issues"
   },
   "scripts": {
     "build": "gulp build",
@@ -44,7 +40,7 @@
     "updateGithubPages": "gulp gitUpdateGithubPages",
     "version": "gulp build && git add -A"
   },
-  "main": "./index.js",
+  "main": "node index.js",
   "umd": "./blockly.min.js",
   "unpkg": "./blockly.min.js",
   "types": "./blockly.d.ts",
