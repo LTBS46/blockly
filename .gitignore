@@ -9,11 +9,12 @@ build-debug.log
 *.komodoproject
 /nbproject/private/
 
-tests/compile/main_compressed.js
-tests/compile/*compiler*.jar
-tests/screenshot/outputs/*
-local_build/*compiler*.jar
-local_build/local_*_compressed.js
-chromedriver
-typings/tmp/*
-dist/
+lib/block/tests/compile/main_compressed.js
+lib/block/tests/compile/*compiler*.jar
+lib/block/tests/screenshot/outputs/*
+lib/block/local_build/*compiler*.jar
+lib/block/local_build/local_*_compressed.js
+lib/block/chromedriver
+lib/block/typings/tmp/*
+lib/block/dist/
+gen/*

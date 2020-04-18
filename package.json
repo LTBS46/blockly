@@ -13,9 +13,9 @@
     "url": "https://github.com/LTBS46/blockly/issues"
   },
   "scripts": {
-    "build": "gulp build",
-    "build:blocks": "gulp buildBlocks",
-    "build:compressed": "gulp buildCompressed",
+    "build": "scripts/build.bat",
+    "build:blocks": "scripts/build_blocks.bat",
+    "build:compressed": "scripts/build_compressed.bat",
     "build:core": "gulp buildCore",
     "build:debug": "gulp buildCompressed --verbose --strict",
     "build:debug:log": "npm run build:debug > build-debug.log 2>&1 && tail -3 build-debug.log",
@@ -33,21 +33,21 @@
     "release": "gulp gitCreateRC",
     "test": "concurrently 'npm run test:prepare' 'sleep 5 && npm run test:run'",
     "test:prepare": "npm run test:setupselenium && npm run test:startselenium",
-    "test:run": "tests/run_all_tests.sh",
-    "test:setupselenium": "selenium-standalone install --config=./tests/scripts/selenium-config.js",
-    "test:startselenium": "selenium-standalone start --config=./tests/scripts/selenium-config.js",
+    "test:run": "lib/block/tests/run_all_tests.sh",
+    "test:setupselenium": "selenium-standalone install --config=./lib/block/tests/scripts/selenium-config.js",
+    "test:startselenium": "selenium-standalone start --config=./lib/block/tests/scripts/selenium-config.js",
     "typings": "gulp typings",
     "updateGithubPages": "gulp gitUpdateGithubPages",
     "version": "gulp build && git add -A"
   },
   "main": "node index.js",
-  "umd": "./blockly.min.js",
-  "unpkg": "./blockly.min.js",
-  "types": "./blockly.d.ts",
+  "umd": "./lib/block/blockly.min.js",
+  "unpkg": "./lib/block/blockly.min.js",
+  "types": "./lib/block/blockly.d.ts",
   "browser": {
-    "./node.js": "./browser.js",
-    "./core.js": "./core-browser.js",
-    "./blockly-node.js": "./blockly.js"
+    "./node.js": "./lib/block/browser.js",
+    "./core.js": "./lib/block/core-browser.js",
+    "./blockly-node.js": "./lib/block/blockly.js"
   },
   "license": "Apache-2.0",
   "devDependencies": {

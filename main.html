@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="lib/block/blockly_compressed.js"></script>
+    <script src="lib/block/blocks_compressed.js"></script>
+    <script src="lib/block/javascript_compressed.js"></script>
+    <script src="lib/block/dart_compressed.js"></script>
+    <script src="lib/block/php_compressed.js"></script>
+    <script src="lib/block/python_compressed.js"></script>
+    <script src="lib/block/lua_compressed.js"></script>
+    <script src="lib/block/msg/js/en.js"></script>
+    <style>
+      body {
+        background-color: #fff;
+        font-family: sans-serif;
+      }
+      h1 {
+        font-weight: normal;
+        font-size: 140%;
+      }
+    </style>
+    <title></title>
+  </head>
+  <body style="margin:0;">
+    <div id="blocklyDiv" style="position:absolute;width:100%;height:80%;"></div>
+    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+      <category name="Control">
+        <block type="controls_if"></block>
+        <block type="controls_ifelse"></block>
+        <block type="controls_if_if"></block>
+        <block type="controls_if_elseif"></block>
+        <block type="controls_if_else"></block>
+        <block type="controls_whileUntil"></block>
+        <block type="controls_repeat_ext"></block>
+        <block type="controls_repeat"></block>
+        <block type="controls_for"></block>
+        <block type="controls_forEach"></block>
+        <block type="controls_flow_statements"></block>
+      </category>
+      <category name="Logic">
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>
+      </category>
+      <category name="Math">
+        <block type="math_number">
+          <field name="NUM">123</field>
+        </block>
+        <block type="math_arithmetic"></block>
+        <block type="math_single"></block>
+        <block type="math_trig"></block>
+        <block type="math_constant"></block>
+        <block type="math_number_property"></block>
+        <block type="math_change"></block>
+        <block type="math_round"></block>
+        <block type="math_on_list"></block>
+        <block type="math_modulo"></block>
+        <block type="math_constrain"></block>
+        <block type="math_random_int"></block>
+        <block type="math_random_float"></block>
+        <block type="math_atan2"></block>
+      </category>
+      <category name="Text">
+        <block type="text"></block>
+        <block type="text_print"></block>
+        <block type="text_multiline"></block>
+        <block type="text_join"></block>
+        <block type="text_create_join_item"></block>
+        <block type="text_create_join_container"></block>
+        <block type="text_length"></block>
+        <block type="text_append"></block>
+        <block type="text_isEmpty"></block>
+        <block type="text_indexOf"></block>
+        <block type="text_charAt"></block>
+      </category>
+      <category name="Color">
+        <block type="colour_picker"></block>
+        <block type="colour_random"></block>
+        <block type="colour_rgb"></block>
+        <block type="colour_blend"></block>
+      </category>
+      <category name="Other">
+        <block type="variables_get"></block>
+        <block type="variables_set"></block>
+        <block type="variables_get_dynamic"></block>
+        <block type="variables_set_dynamic"></block>
+      </category>
+      <category name="List">
+        <block type="lists_create_empty"></block>
+        <block type="lists_repeat"></block>
+        <block type="lists_reverse"></block>
+        <block type="lists_isEmpty"></block>
+        <block type="lists_length"></block>
+      </category>
+      <category name="Variables" custom="VARIABLE">
+      </category>
+      <category name="Functions" custom="PROCEDURE">
+      </category>
+      <category name="Export">
+      </category>
+    </xml><textarea id="textarea" style="width=100%;height=20%;position=absolute;"></textarea>
+    <script>
+      const ClientHttp = new XMLHttpRequest();
+      const url = 'http://127.0.0.1:3000/';
+      var exprt = function(){};
+      var blocklyArea = document.getElementById('blocklyArea');
+      var blocklyDiv = document.getElementById('blocklyDiv');
+      var workspace = Blockly.inject(
+        blocklyDiv,
+        {
+          media: 'lib/block/media/',
+          toolbox: document.getElementById('toolbox')
+        }
+      );
+      function myUpdateFunction(event) {
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        document.getElementById('textarea').value = code;
+      }
+      workspace.addChangeListener(myUpdateFunction);
+    </script>
+  </body>
+</html>
