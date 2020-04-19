@@ -438,24 +438,233 @@ Blockly.Blocks.lists_setIndex={
   }
 };
 Blockly.Blocks.lists_getSublist={
-  init:function(){this.WHERE_OPTIONS_1=[[Blockly.Msg.LISTS_GET_SUBLIST_START_FROM_START,"FROM_START"],[Blockly.Msg.LISTS_GET_SUBLIST_START_FROM_END,"FROM_END"],[Blockly.Msg.LISTS_GET_SUBLIST_START_FIRST,"FIRST"]];this.WHERE_OPTIONS_2=[[Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_START,"FROM_START"],[Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_END,"FROM_END"],[Blockly.Msg.LISTS_GET_SUBLIST_END_LAST,"LAST"]];this.setHelpUrl(Blockly.Msg.LISTS_GET_SUBLIST_HELPURL);this.setStyle("list_blocks");
-this.appendValueInput("LIST").setCheck("Array").appendField(Blockly.Msg.LISTS_GET_SUBLIST_INPUT_IN_LIST);this.appendDummyInput("AT1");this.appendDummyInput("AT2");Blockly.Msg.LISTS_GET_SUBLIST_TAIL&&this.appendDummyInput("TAIL").appendField(Blockly.Msg.LISTS_GET_SUBLIST_TAIL);this.setInputsInline(!0);this.setOutput(!0,"Array");this.updateAt_(1,!0);this.updateAt_(2,!0);this.setTooltip(Blockly.Msg.LISTS_GET_SUBLIST_TOOLTIP)},mutationToDom:function(){var a=Blockly.utils.xml.createElement("mutation"),
-b=this.getInput("AT1").type==Blockly.INPUT_VALUE;a.setAttribute("at1",b);b=this.getInput("AT2").type==Blockly.INPUT_VALUE;a.setAttribute("at2",b);return a},domToMutation:function(a){var b="true"==a.getAttribute("at1");a="true"==a.getAttribute("at2");this.updateAt_(1,b);this.updateAt_(2,a)},updateAt_:function(a,b){this.removeInput("AT"+a);this.removeInput("ORDINAL"+a,!0);b?(this.appendValueInput("AT"+a).setCheck("Number"),Blockly.Msg.ORDINAL_NUMBER_SUFFIX&&this.appendDummyInput("ORDINAL"+a).appendField(Blockly.Msg.ORDINAL_NUMBER_SUFFIX)):
-this.appendDummyInput("AT"+a);var c=new Blockly.FieldDropdown(this["WHERE_OPTIONS_"+a],function(c){var e="FROM_START"==c||"FROM_END"==c;if(e!=b){var d=this.getSourceBlock();d.updateAt_(a,e);d.setFieldValue(c,"WHERE"+a);return null}});this.getInput("AT"+a).appendField(c,"WHERE"+a);1==a&&(this.moveInputBefore("AT1","AT2"),this.getInput("ORDINAL1")&&this.moveInputBefore("ORDINAL1","AT2"));Blockly.Msg.LISTS_GET_SUBLIST_TAIL&&this.moveInputBefore("TAIL",null)}};
-Blockly.Blocks.lists_sort={init:function(){this.jsonInit({message0:Blockly.Msg.LISTS_SORT_TITLE,args0:[{type:"field_dropdown",name:"TYPE",options:[[Blockly.Msg.LISTS_SORT_TYPE_NUMERIC,"NUMERIC"],[Blockly.Msg.LISTS_SORT_TYPE_TEXT,"TEXT"],[Blockly.Msg.LISTS_SORT_TYPE_IGNORECASE,"IGNORE_CASE"]]},{type:"field_dropdown",name:"DIRECTION",options:[[Blockly.Msg.LISTS_SORT_ORDER_ASCENDING,"1"],[Blockly.Msg.LISTS_SORT_ORDER_DESCENDING,"-1"]]},{type:"input_value",name:"LIST",check:"Array"}],output:"Array",style:"list_blocks",
-tooltip:Blockly.Msg.LISTS_SORT_TOOLTIP,helpUrl:Blockly.Msg.LISTS_SORT_HELPURL})}};
-Blockly.Blocks.lists_split={init:function(){var a=this,b=new Blockly.FieldDropdown([[Blockly.Msg.LISTS_SPLIT_LIST_FROM_TEXT,"SPLIT"],[Blockly.Msg.LISTS_SPLIT_TEXT_FROM_LIST,"JOIN"]],function(b){a.updateType_(b)});this.setHelpUrl(Blockly.Msg.LISTS_SPLIT_HELPURL);this.setStyle("list_blocks");this.appendValueInput("INPUT").setCheck("String").appendField(b,"MODE");this.appendValueInput("DELIM").setCheck("String").appendField(Blockly.Msg.LISTS_SPLIT_WITH_DELIMITER);this.setInputsInline(!0);this.setOutput(!0,
-"Array");this.setTooltip(function(){var b=a.getFieldValue("MODE");if("SPLIT"==b)return Blockly.Msg.LISTS_SPLIT_TOOLTIP_SPLIT;if("JOIN"==b)return Blockly.Msg.LISTS_SPLIT_TOOLTIP_JOIN;throw Error("Unknown mode: "+b);})},updateType_:function(a){if(this.getFieldValue("MODE")!=a){var b=this.getInput("INPUT").connection;b.setShadowDom(null);var c=b.targetBlock();c&&(b.disconnect(),c.isShadow()?c.dispose():this.bumpNeighbours())}"SPLIT"==a?(this.outputConnection.setCheck("Array"),this.getInput("INPUT").setCheck("String")):
-(this.outputConnection.setCheck("String"),this.getInput("INPUT").setCheck("Array"))},mutationToDom:function(){var a=Blockly.utils.xml.createElement("mutation");a.setAttribute("mode",this.getFieldValue("MODE"));return a},domToMutation:function(a){this.updateType_(a.getAttribute("mode"))}};Blockly.Blocks.logic={};Blockly.Constants.Logic={};Blockly.Constants.Logic.HUE=210;
-Blockly.defineBlocksWithJsonArray([{type:"logic_boolean",message0:"%1",args0:[{type:"field_dropdown",name:"BOOL",options:[["%{BKY_LOGIC_BOOLEAN_TRUE}","TRUE"],["%{BKY_LOGIC_BOOLEAN_FALSE}","FALSE"]]}],output:"Boolean",style:"logic_blocks",tooltip:"%{BKY_LOGIC_BOOLEAN_TOOLTIP}",helpUrl:"%{BKY_LOGIC_BOOLEAN_HELPURL}"},{type:"controls_if",message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",args0:[{type:"input_value",name:"IF0",check:"Boolean"}],message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",args1:[{type:"input_statement",
-name:"DO0"}],previousStatement:null,nextStatement:null,style:"logic_blocks",helpUrl:"%{BKY_CONTROLS_IF_HELPURL}",mutator:"controls_if_mutator",extensions:["controls_if_tooltip"]},{type:"controls_ifelse",message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",args0:[{type:"input_value",name:"IF0",check:"Boolean"}],message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",args1:[{type:"input_statement",name:"DO0"}],message2:"%{BKY_CONTROLS_IF_MSG_ELSE} %1",args2:[{type:"input_statement",name:"ELSE"}],previousStatement:null,nextStatement:null,
-style:"logic_blocks",tooltip:"%{BKYCONTROLS_IF_TOOLTIP_2}",helpUrl:"%{BKY_CONTROLS_IF_HELPURL}",extensions:["controls_if_tooltip"]},{
-  type:"logic_compare",message0:"%1 %2 %3",args0:[{type:"input_value",name:"A"},{type:"field_dropdown",name:"OP",options:[["==","EQ"],["\u2260","NEQ"],["\u200f<","LT"],["\u200f\u2264","LTE"],["\u200f>","GT"],["\u200f\u2265","GTE"]]},{type:"input_value",name:"B"}],inputsInline:!0,output:"Boolean",style:"logic_blocks",helpUrl:"%{BKY_LOGIC_COMPARE_HELPURL}",extensions:["logic_compare","logic_op_tooltip"]
-},{type:"logic_operation",message0:"%1 %2 %3",args0:[{type:"input_value",name:"A",check:"Boolean"},{type:"field_dropdown",name:"OP",options:[["%{BKY_LOGIC_OPERATION_AND}","AND"],["%{BKY_LOGIC_OPERATION_OR}","OR"]]},{type:"input_value",name:"B",check:"Boolean"}],inputsInline:!0,output:"Boolean",style:"logic_blocks",helpUrl:"%{BKY_LOGIC_OPERATION_HELPURL}",extensions:["logic_op_tooltip"]},{type:"logic_negate",message0:"%{BKY_LOGIC_NEGATE_TITLE}",args0:[{type:"input_value",name:"BOOL",
-check:"Boolean"}],output:"Boolean",style:"logic_blocks",tooltip:"%{BKY_LOGIC_NEGATE_TOOLTIP}",helpUrl:"%{BKY_LOGIC_NEGATE_HELPURL}"},{type:"logic_null",message0:"%{BKY_LOGIC_NULL}",output:null,style:"logic_blocks",tooltip:"%{BKY_LOGIC_NULL_TOOLTIP}",helpUrl:"%{BKY_LOGIC_NULL_HELPURL}"},{type:"logic_ternary",message0:"%{BKY_LOGIC_TERNARY_CONDITION} %1",args0:[{type:"input_value",name:"IF",check:"Boolean"}],message1:"%{BKY_LOGIC_TERNARY_IF_TRUE} %1",args1:[{type:"input_value",name:"THEN"}],message2:"%{BKY_LOGIC_TERNARY_IF_FALSE} %1",
-args2:[{type:"input_value",name:"ELSE"}],output:null,style:"logic_blocks",tooltip:"%{BKY_LOGIC_TERNARY_TOOLTIP}",helpUrl:"%{BKY_LOGIC_TERNARY_HELPURL}",extensions:["logic_ternary"]}]);
-Blockly.defineBlocksWithJsonArray([{type:"controls_if_if",message0:"%{BKY_CONTROLS_IF_IF_TITLE_IF}",nextStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_IF_TOOLTIP}"},{type:"controls_if_elseif",message0:"%{BKY_CONTROLS_IF_ELSEIF_TITLE_ELSEIF}",previousStatement:null,nextStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_ELSEIF_TOOLTIP}"},{type:"controls_if_else",message0:"%{BKY_CONTROLS_IF_ELSE_TITLE_ELSE}",previousStatement:null,
-enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_ELSE_TOOLTIP}"}]);Blockly.Constants.Logic.TOOLTIPS_BY_OP={EQ:"%{BKY_LOGIC_COMPARE_TOOLTIP_EQ}",NEQ:"%{BKY_LOGIC_COMPARE_TOOLTIP_NEQ}",LT:"%{BKY_LOGIC_COMPARE_TOOLTIP_LT}",LTE:"%{BKY_LOGIC_COMPARE_TOOLTIP_LTE}",GT:"%{BKY_LOGIC_COMPARE_TOOLTIP_GT}",GTE:"%{BKY_LOGIC_COMPARE_TOOLTIP_GTE}",AND:"%{BKY_LOGIC_OPERATION_TOOLTIP_AND}",OR:"%{BKY_LOGIC_OPERATION_TOOLTIP_OR}"};
+  init:function(){
+    this.WHERE_OPTIONS_1=[[Blockly.Msg.LISTS_GET_SUBLIST_START_FROM_START,"FROM_START"],[Blockly.Msg.LISTS_GET_SUBLIST_START_FROM_END,"FROM_END"],[Blockly.Msg.LISTS_GET_SUBLIST_START_FIRST,"FIRST"]];
+    this.WHERE_OPTIONS_2=[[Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_START,"FROM_START"],[Blockly.Msg.LISTS_GET_SUBLIST_END_FROM_END,"FROM_END"],[Blockly.Msg.LISTS_GET_SUBLIST_END_LAST,"LAST"]];
+    this.setHelpUrl(Blockly.Msg.LISTS_GET_SUBLIST_HELPURL);
+    this.setStyle("list_blocks");
+    this.appendValueInput("LIST").setCheck("Array").appendField(Blockly.Msg.LISTS_GET_SUBLIST_INPUT_IN_LIST);
+    this.appendDummyInput("AT1");
+    this.appendDummyInput("AT2");
+    Blockly.Msg.LISTS_GET_SUBLIST_TAIL&&this.appendDummyInput("TAIL").appendField(Blockly.Msg.LISTS_GET_SUBLIST_TAIL);
+    this.setInputsInline(!0);
+    this.setOutput(!0,"Array");
+    this.updateAt_(1,!0);
+    this.updateAt_(2,!0);
+    this.setTooltip(Blockly.Msg.LISTS_GET_SUBLIST_TOOLTIP)
+  },mutationToDom:function(){
+    var a=Blockly.utils.xml.createElement("mutation"),b=this.getInput("AT1").type==Blockly.INPUT_VALUE;
+    a.setAttribute("at1",b);
+    b=this.getInput("AT2").type==Blockly.INPUT_VALUE;
+    a.setAttribute("at2",b);
+    return a
+  },domToMutation:function(a){
+    var b="true"==a.getAttribute("at1");
+    a="true"==a.getAttribute("at2");
+    this.updateAt_(1,b);
+    this.updateAt_(2,a)
+  },updateAt_:function(a,b){
+    this.removeInput("AT"+a);
+    this.removeInput("ORDINAL"+a,!0);
+    b?(this.appendValueInput("AT"+a).setCheck("Number"),Blockly.Msg.ORDINAL_NUMBER_SUFFIX&&this.appendDummyInput("ORDINAL"+a).appendField(Blockly.Msg.ORDINAL_NUMBER_SUFFIX)):this.appendDummyInput("AT"+a);
+    var c=new Blockly.FieldDropdown(
+      this["WHERE_OPTIONS_"+a],
+      function(c){
+        var e="FROM_START"==c||"FROM_END"==c;
+        if(e!=b){
+          var d=this.getSourceBlock();
+          d.updateAt_(a,e);
+          d.setFieldValue(c,"WHERE"+a);
+          return null
+        }
+      }
+    );
+    this.getInput("AT"+a).appendField(c,"WHERE"+a);
+    1==a&&(this.moveInputBefore("AT1","AT2"),this.getInput("ORDINAL1")&&this.moveInputBefore("ORDINAL1","AT2"));
+    Blockly.Msg.LISTS_GET_SUBLIST_TAIL&&this.moveInputBefore("TAIL",null)
+  }
+};
+Blockly.Blocks.lists_sort={
+  init:function(){
+    this.jsonInit(
+      {
+        message0:Blockly.Msg.LISTS_SORT_TITLE,
+        args0:[
+          {
+            type:"field_dropdown",
+            name:"TYPE",
+            options:[
+              [
+                Blockly.Msg.LISTS_SORT_TYPE_NUMERIC,"NUMERIC"
+              ],[
+                Blockly.Msg.LISTS_SORT_TYPE_TEXT,"TEXT"
+              ],[
+                Blockly.Msg.LISTS_SORT_TYPE_IGNORECASE,"IGNORE_CASE"
+              ]
+            ]
+          },{
+            type:"field_dropdown",
+            name:"DIRECTION",
+            options:[
+              [
+                Blockly.Msg.LISTS_SORT_ORDER_ASCENDING,"1"
+              ],[
+                Blockly.Msg.LISTS_SORT_ORDER_DESCENDING,"-1"
+              ]
+            ]
+          },{
+            type:"input_value",
+            name:"LIST",
+            check:"Array"
+          }
+        ],
+        output:"Array",
+        style:"list_blocks",
+        tooltip:Blockly.Msg.LISTS_SORT_TOOLTIP,
+        helpUrl:Blockly.Msg.LISTS_SORT_HELPURL
+      }
+    )
+  }
+};
+Blockly.Blocks.lists_split={
+  init:function(){
+    var a=this,b=new Blockly.FieldDropdown(
+      [
+        [
+          Blockly.Msg.LISTS_SPLIT_LIST_FROM_TEXT,"SPLIT"
+        ],[
+          Blockly.Msg.LISTS_SPLIT_TEXT_FROM_LIST,"JOIN"
+        ]
+      ],function(b){
+        a.updateType_(b)
+      }
+    );
+    this.setHelpUrl(Blockly.Msg.LISTS_SPLIT_HELPURL);
+    this.setStyle("list_blocks");
+    this.appendValueInput("INPUT").setCheck("String").appendField(b,"MODE");
+    this.appendValueInput("DELIM").setCheck("String").appendField(Blockly.Msg.LISTS_SPLIT_WITH_DELIMITER);
+    this.setInputsInline(!0);
+    this.setOutput(!0,"Array");
+    this.setTooltip(
+      function(){
+        var b=a.getFieldValue("MODE");
+        if("SPLIT"==b)return Blockly.Msg.LISTS_SPLIT_TOOLTIP_SPLIT;
+        if("JOIN"==b)return Blockly.Msg.LISTS_SPLIT_TOOLTIP_JOIN;
+        throw Error("Unknown mode: "+b);
+      }
+    )
+  },updateType_:function(a){
+    if(this.getFieldValue("MODE")!=a){
+      var b=this.getInput("INPUT").connection;
+      b.setShadowDom(null);
+      var c=b.targetBlock();
+      c&&(b.disconnect(),c.isShadow()?c.dispose():this.bumpNeighbours())
+    }
+    "SPLIT"==a?(
+      this.outputConnection.setCheck("Array"),
+      this.getInput("INPUT").setCheck("String")
+    ):(
+      this.outputConnection.setCheck("String"),
+      this.getInput("INPUT").setCheck("Array")
+    )
+  },mutationToDom:function(){
+    var a=Blockly.utils.xml.createElement("mutation");
+    a.setAttribute("mode",this.getFieldValue("MODE"));
+    return a
+  },domToMutation:function(a){
+    this.updateType_(a.getAttribute("mode"))
+  }
+};
+Blockly.Blocks.logic={};
+Blockly.Constants.Logic={};
+Blockly.Constants.Logic.HUE=210;
+Blockly.defineBlocksWithJsonArray(
+  [
+    {
+      type:"logic_boolean",
+      message0:"%1",
+      args0:[
+        {
+          type:"field_dropdown",
+          name:"BOOL",
+          options:[
+            ["%{BKY_LOGIC_BOOLEAN_TRUE}","TRUE"],
+            ["%{BKY_LOGIC_BOOLEAN_FALSE}","FALSE"]
+          ]
+        }
+      ],
+      output:"Boolean",
+      style:"logic_blocks",
+      tooltip:"%{BKY_LOGIC_BOOLEAN_TOOLTIP}",
+      helpUrl:"%{BKY_LOGIC_BOOLEAN_HELPURL}"
+    },{
+      type:"controls_if",
+      message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",
+      args0:[
+        {
+          type:"input_value",
+          name:"IF0",
+          check:"Boolean"
+        }
+      ],
+      message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",
+      args1:[
+        {
+          type:"input_statement",name:"DO0"
+        }
+      ],
+      previousStatement:null,
+      nextStatement:null,
+      style:"logic_blocks",
+      helpUrl:"%{BKY_CONTROLS_IF_HELPURL}",
+      mutator:"controls_if_mutator",
+      extensions:["controls_if_tooltip"]
+    },{
+      type:"controls_ifelse",
+      message0:"%{BKY_CONTROLS_IF_MSG_IF} %1",
+      args0:[
+        {
+          type:"input_value",
+          name:"IF0",
+          check:"Boolean"
+        }
+      ],
+      message1:"%{BKY_CONTROLS_IF_MSG_THEN} %1",
+      args1:[
+        {
+          type:"input_statement",name:"DO0"
+        }
+      ],
+      message2:"%{BKY_CONTROLS_IF_MSG_ELSE} %1",
+      args2:[
+        {
+          type:"input_statement",
+          name:"ELSE"
+        }
+      ],
+      previousStatement:null,
+      nextStatement:null,
+      style:"logic_blocks",
+      tooltip:"%{BKYCONTROLS_IF_TOOLTIP_2}",
+      helpUrl:"%{BKY_CONTROLS_IF_HELPURL}",
+      extensions:["controls_if_tooltip"]
+    },{
+      type:"logic_compare",
+      message0:"%1 %2%3",
+      args0:[
+        {
+          type:"input_value",
+          name:"A"
+        },{
+          type:"field_dropdown",
+          name:"OP",
+          options:[
+            ["==","EQ"],
+            ["!=","NEQ"],
+            ["<","LT"],
+            ["<=","LTE"],
+            [">","GT"],[">=","GTE"]]},{type:"input_value",name:"B"}],inputsInline:!0,output:"Boolean",style:"logic_blocks",helpUrl:"%{BKY_LOGIC_COMPARE_HELPURL}",extensions:["logic_compare","logic_op_tooltip"]},{type:"logic_operation",message0:"%1 %2 %3",args0:[{type:"input_value",name:"A",check:"Boolean"},{type:"field_dropdown",name:"OP",options:[["%{BKY_LOGIC_OPERATION_AND}","AND"],["%{BKY_LOGIC_OPERATION_OR}","OR"]]},{type:"input_value",name:"B",check:"Boolean"}],inputsInline:!0,output:"Boolean",style:"logic_blocks",helpUrl:"%{BKY_LOGIC_OPERATION_HELPURL}",extensions:["logic_op_tooltip"]},{type:"logic_negate",message0:"%{BKY_LOGIC_NEGATE_TITLE}",args0:[{type:"input_value",name:"BOOL",check:"Boolean"}],output:"Boolean",style:"logic_blocks",tooltip:"%{BKY_LOGIC_NEGATE_TOOLTIP}",helpUrl:"%{BKY_LOGIC_NEGATE_HELPURL}"},{type:"logic_null",message0:"%{BKY_LOGIC_NULL}",output:null,style:"logic_blocks",tooltip:"%{BKY_LOGIC_NULL_TOOLTIP}",helpUrl:"%{BKY_LOGIC_NULL_HELPURL}"},{type:"logic_ternary",message0:"%{BKY_LOGIC_TERNARY_CONDITION} %1",args0:[{type:"input_value",name:"IF",check:"Boolean"}],message1:"%{BKY_LOGIC_TERNARY_IF_TRUE} %1",args1:[{type:"input_value",name:"THEN"}],message2:"%{BKY_LOGIC_TERNARY_IF_FALSE} %1",args2:[{type:"input_value",name:"ELSE"}],output:null,style:"logic_blocks",tooltip:"%{BKY_LOGIC_TERNARY_TOOLTIP}",helpUrl:"%{BKY_LOGIC_TERNARY_HELPURL}",extensions:["logic_ternary"]}]);
+Blockly.defineBlocksWithJsonArray([{type:"controls_if_if",message0:"%{BKY_CONTROLS_IF_IF_TITLE_IF}",nextStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_IF_TOOLTIP}"},{type:"controls_if_elseif",message0:"%{BKY_CONTROLS_IF_ELSEIF_TITLE_ELSEIF}",previousStatement:null,nextStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_ELSEIF_TOOLTIP}"},{type:"controls_if_else",message0:"%{BKY_CONTROLS_IF_ELSE_TITLE_ELSE}",previousStatement:null,enableContextMenu:!1,style:"logic_blocks",tooltip:"%{BKY_CONTROLS_IF_ELSE_TOOLTIP}"}]);Blockly.Constants.Logic.TOOLTIPS_BY_OP={EQ:"%{BKY_LOGIC_COMPARE_TOOLTIP_EQ}",NEQ:"%{BKY_LOGIC_COMPARE_TOOLTIP_NEQ}",LT:"%{BKY_LOGIC_COMPARE_TOOLTIP_LT}",LTE:"%{BKY_LOGIC_COMPARE_TOOLTIP_LTE}",GT:"%{BKY_LOGIC_COMPARE_TOOLTIP_GT}",GTE:"%{BKY_LOGIC_COMPARE_TOOLTIP_GTE}",AND:"%{BKY_LOGIC_OPERATION_TOOLTIP_AND}",OR:"%{BKY_LOGIC_OPERATION_TOOLTIP_OR}"};
 Blockly.Extensions.register("logic_op_tooltip",Blockly.Extensions.buildTooltipForDropdown("OP",Blockly.Constants.Logic.TOOLTIPS_BY_OP));
 Blockly.Constants.Logic.CONTROLS_IF_MUTATOR_MIXIN={elseifCount_:0,elseCount_:0,suppressPrefixSuffix:!0,mutationToDom:function(){if(!this.elseifCount_&&!this.elseCount_)return null;var a=Blockly.utils.xml.createElement("mutation");this.elseifCount_&&a.setAttribute("elseif",this.elseifCount_);this.elseCount_&&a.setAttribute("else",1);return a},domToMutation:function(a){this.elseifCount_=parseInt(a.getAttribute("elseif"),10)||0;this.elseCount_=parseInt(a.getAttribute("else"),10)||0;this.rebuildShape_()},
 decompose:function(a){var b=a.newBlock("controls_if_if");b.initSvg();for(var c=b.nextConnection,d=1;d<=this.elseifCount_;d++){var e=a.newBlock("controls_if_elseif");e.initSvg();c.connect(e.previousConnection);c=e.nextConnection}this.elseCount_&&(a=a.newBlock("controls_if_else"),a.initSvg(),c.connect(a.previousConnection));return b},compose:function(a){a=a.nextConnection.targetBlock();this.elseCount_=this.elseifCount_=0;for(var b=[null],c=[null],d=null;a;){switch(a.type){case "controls_if_elseif":this.elseifCount_++;
