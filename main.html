@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <script src="lib/block/blockly_compressed.js"></script>
-    <script src="lib/block/blocks_compressed.js"></script>
-    <script src="lib/block/javascript_compressed.js"></script>
+    <script src="revised/javascript_compressed.js"></script>
     <script src="lib/block/dart_compressed.js"></script>
     <script src="lib/block/php_compressed.js"></script>
     <script src="lib/block/python_compressed.js"></script>
     <script src="lib/block/lua_compressed.js"></script>
+    <script src="lib/block/blocks_compressed.js"></script>
     <script src="lib/block/msg/js/en.js"></script>
     <style>
       body {
@@ -24,13 +24,14 @@
   </head>
   <body style="margin:0;">
     <div id="blocklyDiv" style="position:absolute;width:100%;height:80%;"></div>
+    <textarea id="textarea" style="postion:fixed;bottom:0px;width=100%;height=20%;position=absolute;"></textarea>
     <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
       <category name="Control">
         <block type="controls_if"></block>
-        <block type="controls_ifelse"></block>
+        <block type="controls_ifelse"></block><!--
         <block type="controls_if_if"></block>
         <block type="controls_if_elseif"></block>
-        <block type="controls_if_else"></block>
+        <block type="controls_if_else"></block>-->
         <block type="controls_whileUntil"></block>
         <block type="controls_repeat_ext"></block>
         <block type="controls_repeat"></block>
@@ -69,8 +70,8 @@
         <block type="text_print"></block>
         <block type="text_multiline"></block>
         <block type="text_join"></block>
-        <block type="text_create_join_item"></block>
-        <block type="text_create_join_container"></block>
+        <!--<block type="text_create_join_item"></block>
+        <block type="text_create_join_container"></block>-->
         <block type="text_length"></block>
         <block type="text_append"></block>
         <block type="text_isEmpty"></block>
@@ -102,7 +103,7 @@
       </category>
       <category name="Export">
       </category>
-    </xml><textarea id="textarea" style="width=100%;height=20%;position=absolute;"></textarea>
+    </xml>
     <script>
       const ClientHttp = new XMLHttpRequest();
       const url = 'http://127.0.0.1:3000/';
