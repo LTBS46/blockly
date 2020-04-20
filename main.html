@@ -8,7 +8,16 @@
     <script src="lib/block/php_compressed.js"></script>
     <script src="lib/block/python_compressed.js"></script>
     <script src="lib/block/lua_compressed.js"></script>
-    <script src="revised/blocks.js"></script>
+    <span id="block_list"><script src="revised/blocks/colour.js"></script>
+    <script src="revised/blocks/lists.js"></script>
+    <script src="revised/blocks/logic.js"></script>
+    <script src="revised/blocks/loops.js"></script>
+    <script src="revised/blocks/math.js"></script>
+    <script src="revised/blocks/procedures.js"></script>
+    <script src="revised/blocks/text.js"></script>
+    <script src="revised/blocks/variables_dynamic.js"></script>
+    <script src="revised/blocks/variables.js"></script>
+    </span>
     <script src="revised/en.js"></script>
     <style>
       body {
@@ -49,7 +58,7 @@
       </category>
       <category name="Math">
         <block type="math_number">
-          <field name="NUM">123</field>
+          <field name="NUM">0</field>
         </block>
         <block type="math_arithmetic"></block>
         <block type="math_single"></block>
@@ -92,6 +101,9 @@
       </category>
       <category name="List">
         <block type="lists_create_empty"></block>
+        <block type="lists_create_with"></block>
+        <block type="lists_getIndex"></block>
+        <block type="lists_setIndex"></block>
         <block type="lists_repeat"></block>
         <block type="lists_reverse"></block>
         <block type="lists_isEmpty"></block>
