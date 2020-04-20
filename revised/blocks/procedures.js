@@ -10,17 +10,18 @@
  */
 'use strict';
 
-goog.provide('Blockly.Blocks.procedures');
+//goog.provide('Blockly.Blocks.procedures');
 
-goog.require('Blockly');
-goog.require('Blockly.Blocks');
-goog.require('Blockly.Comment');
-goog.require('Blockly.FieldCheckbox');
-goog.require('Blockly.FieldLabel');
-goog.require('Blockly.FieldTextInput');
-goog.require('Blockly.Mutator');
-goog.require('Blockly.Warning');
+//goog.require('Blockly');
+//goog.require('Blockly.Blocks');
+//goog.require('Blockly.Comment');
+//goog.require('Blockly.FieldCheckbox');
+//goog.require('Blockly.FieldLabel');
+//goog.require('Blockly.FieldTextInput');
+//goog.require('Blockly.Mutator');
+//goog.require('Blockly.Warning');
 
+Blockly.Blocks.procedures={};
 
 Blockly.Blocks['procedures_defnoreturn'] = {
   /**

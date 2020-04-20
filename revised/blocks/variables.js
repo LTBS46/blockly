@@ -15,14 +15,17 @@
  */
 'use strict';
 
-goog.provide('Blockly.Blocks.variables');  // Deprecated.
-goog.provide('Blockly.Constants.Variables');
+//goog.provide('Blockly.Blocks.variables');  // Deprecated.
+//goog.provide('Blockly.Constants.Variables');
 
-goog.require('Blockly');
-goog.require('Blockly.Blocks');
-goog.require('Blockly.FieldLabel');
-goog.require('Blockly.FieldVariable');
+//goog.require('Blockly');
+//goog.require('Blockly.Blocks');
+//goog.require('Blockly.FieldLabel');
+//goog.require('Blockly.FieldVariable');
 
+
+Blockly.Blocks.variables={};
+Blockly.Constants.Variables={};
 
 /**
  * Unused constant for the common HSV hue for all blocks in this category.

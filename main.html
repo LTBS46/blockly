@@ -8,17 +8,18 @@
     <script src="lib/block/php_compressed.js"></script>
     <script src="lib/block/python_compressed.js"></script>
     <script src="lib/block/lua_compressed.js"></script>
-    <span id="block_list"><script src="revised/blocks/colour.js"></script>
-    <script src="revised/blocks/lists.js"></script>
-    <script src="revised/blocks/logic.js"></script>
-    <script src="revised/blocks/loops.js"></script>
-    <script src="revised/blocks/math.js"></script>
-    <script src="revised/blocks/procedures.js"></script>
-    <script src="revised/blocks/text.js"></script>
-    <script src="revised/blocks/variables_dynamic.js"></script>
-    <script src="revised/blocks/variables.js"></script>
-    </span>
     <script src="revised/en.js"></script>
+    <span id="block_list">
+      <script src="revised/blocks/colour.js"></script>
+      <script src="revised/blocks/lists.js"></script>
+      <script src="revised/blocks/logic.js"></script>
+      <script src="revised/blocks/loops.js"></script>
+      <script src="revised/blocks/math.js"></script>
+      <script src="revised/blocks/procedures.js"></script>
+      <script src="revised/blocks/text.js"></script>
+      <script src="revised/blocks/variables_dynamic.js"></script>
+      <script src="revised/blocks/variables.js"></script>
+    </span>
     <style>
       body {
         background-color: #fff;
@@ -33,7 +34,6 @@
   </head>
   <body style="margin:0;">
     <div id="blocklyDiv" style="position:absolute;width:100%;height:80%;"></div>
-    <textarea id="textarea" style="postion:fixed;bottom:0px;width=100%;height=20%;position=absolute;"></textarea>
     <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
       <category name="Control">
         <block type="controls_if"></block>
@@ -53,7 +53,6 @@
         <block type="logic_operation"></block>
         <block type="logic_negate"></block>
         <block type="logic_boolean"></block>
-        <block type="logic_null"></block>
         <block type="logic_ternary"></block>
       </category>
       <category name="Math">
@@ -86,18 +85,28 @@
         <block type="text_isEmpty"></block>
         <block type="text_indexOf"></block>
         <block type="text_charAt"></block>
+        <block type="text_getSubstring"></block>
+        <block type="text_changeCase"></block>
+        <block type="text_trim"></block>
+        <block type="text_prompt_ext"></block>
+        <block type="text_prompt"></block>
+        <block type="text_count"></block>
+        <block type="text_replace"></block>
+        <block type="text_reverse"></block>
       </category>
       <category name="Color">
-        <block type="colour_picker"></block>
-        <block type="colour_random"></block>
-        <block type="colour_rgb"></block>
-        <block type="colour_blend"></block>
+        <block type="color_picker"></block>
+        <block type="color_random"></block>
+        <block type="color_rgb"></block>
+        <block type="color_blend"></block>
       </category>
       <category name="Other">
-        <block type="variables_get"></block>
+        <block type="logic_null"></block>
+<!--        <block type="variables_get"></block>
         <block type="variables_set"></block>
         <block type="variables_get_dynamic"></block>
         <block type="variables_set_dynamic"></block>
+-->
       </category>
       <category name="List">
         <block type="lists_create_empty"></block>
@@ -116,12 +125,14 @@
       <category name="Export">
       </category>
     </xml>
+    <textarea id="textarea" style="postion:fixed;bottom:0px;width=100%;height=20%;position=absolute;"></textarea>
     <script>
       const ClientHttp = new XMLHttpRequest();
       const url = 'http://127.0.0.1:3000/';
       var exprt = function(){};
       var blocklyArea = document.getElementById('blocklyArea');
       var blocklyDiv = document.getElementById('blocklyDiv');
+      var iWant = "JavaScript";
       var workspace = Blockly.inject(
         blocklyDiv,
         {
@@ -130,7 +141,7 @@
         }
       );
       function myUpdateFunction(event) {
-        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        var code = Blockly[iWant].workspaceToCode(workspace);
         document.getElementById('textarea').value = code;
       }
       workspace.addChangeListener(myUpdateFunction);

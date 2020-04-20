@@ -15,20 +15,23 @@
  */
 'use strict';
 
-goog.provide('Blockly.Blocks.lists');  // Deprecated
-goog.provide('Blockly.Constants.Lists');
+//goog.provide('Blockly.Blocks.lists');  // Deprecated
+//goog.provide('Blockly.Constants.Lists');
 
-goog.require('Blockly');
-goog.require('Blockly.Blocks');
-goog.require('Blockly.FieldDropdown');
-goog.require('Blockly.FieldLabel');
-goog.require('Blockly.Mutator');
+//goog.require('Blockly');
+//goog.require('Blockly.Blocks');
+//goog.require('Blockly.FieldDropdown');
+//goog.require('Blockly.FieldLabel');
+//goog.require('Blockly.Mutator');
 
 
 /**
  * Unused constant for the common HSV hue for all blocks in this category.
  * @deprecated Use Blockly.Msg['LISTS_HUE']. (2018 April 5)
  */
+
+Blockly.Blocks.lists={};
+Blockly.Constants.Lists={};
 Blockly.Constants.Lists.HUE = 260;
 
 Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT

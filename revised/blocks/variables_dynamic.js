@@ -15,18 +15,19 @@
  */
 'use strict';
 
-goog.provide('Blockly.Constants.VariablesDynamic');
+//goog.provide('Blockly.Constants.VariablesDynamic');
 
-goog.require('Blockly');
-goog.require('Blockly.Blocks');
-goog.require('Blockly.FieldLabel');
-goog.require('Blockly.FieldVariable');
+//goog.require('Blockly');
+//goog.require('Blockly.Blocks');
+//goog.require('Blockly.FieldLabel');
+//goog.require('Blockly.FieldVariable');
 
 
 /**
  * Unused constant for the common HSV hue for all blocks in this category.
  * @deprecated Use Blockly.Msg['VARIABLES_DYNAMIC_HUE']. (2018 April 5)
  */
+Blockly.Constants.VariablesDynamic={};
 Blockly.Constants.VariablesDynamic.HUE = 310;
 
 Blockly.defineBlocksWithJsonArray([ // BEGIN JSON EXTRACT
