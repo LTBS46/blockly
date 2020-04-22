@@ -3,11 +3,41 @@
   <head>
     <meta charset="utf-8">
     <script src="lib/block/blockly_compressed.js"></script>
-    <script src="lib/block/javascript_compressed.js"></script>
-    <script src="lib/block/dart_compressed.js"></script>
-    <script src="lib/block/php_compressed.js"></script>
-    <script src="lib/block/python_compressed.js"></script>
-    <script src="lib/block/lua_compressed.js"></script>
+    <span id="translator">
+      <span id="jslator">
+        <script src="lib/block/javascript_compressed.js"></script>
+        <script src="revised/generator/personal_js.js"></script>
+      </span>
+      <span id="daslator">
+        <script src="lib/block/dart_compressed.js"></script>
+      </span>
+      <span id="cppator">
+        <script src="revised/generator/cpp.js"></script>
+        <span id="cppblock">
+          <script src="revised/generator/cpp/color.js"></script>
+          <script src="revised/generator/cpp/lists.js"></script>
+          <script src="revised/generator/cpp/logic.js"></script>
+          <script src="revised/generator/cpp/loops.js"></script>
+          <script src="revised/generator/cpp/math.js"></script>
+          <script src="revised/generator/cpp/procedures.js"></script>
+          <script src="revised/generator/cpp/text.js"></script>
+          <script src="revised/generator/cpp/utils.js"></script>
+          <script src="revised/generator/cpp/variables.js"></script>
+          <script src="revised/generator/cpp/variables_dynamic.js"></script>
+        </span>
+      </span>
+      <span id="phsalator">
+        <script src="lib/block/php_compressed.js"></script>
+        <script src="revised/generator/personal_php.js"></script>
+      </span>
+      <span id="pyslator">
+        <script src="lib/block/python_compressed.js"></script>
+        <script src="revised/generator/personal_py.js"></script>
+      </span>
+      <span id="luaslator">
+        <script src="lib/block/lua_compressed.js"></script>
+      </span>
+    </span>
     <script src="revised/en.js"></script>
     <span id="block_list">
       <script src="revised/blocks/colour.js"></script>
@@ -19,6 +49,7 @@
       <script src="revised/blocks/text.js"></script>
       <script src="revised/blocks/variables_dynamic.js"></script>
       <script src="revised/blocks/variables.js"></script>
+      <script src="revised/blocks/utils.js"></script>
     </span>
     <style>
       body {
@@ -35,37 +66,67 @@
   <body style="margin:0;">
     <div id="blocklyDiv" style="position:absolute;width:100%;height:80%;"></div>
     <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-      <category name="Control">
+      <category name="Control" colour="%{BKY_LOOPS_HUE}">
         <block type="controls_if"></block>
-        <block type="controls_ifelse"></block><!--
-        <block type="controls_if_if"></block>
-        <block type="controls_if_elseif"></block>
-        <block type="controls_if_else"></block>-->
         <block type="controls_whileUntil"></block>
-        <block type="controls_repeat_ext"></block>
-        <block type="controls_repeat"></block>
-        <block type="controls_for"></block>
+        <block type="controls_for">
+          <value name="FROM">
+            <shadow type="math_number">
+              <field name="NUM">0</field>
+            </shadow>
+          </value>
+          <value name="TO">
+            <shadow type="math_number">
+              <field name="NUM">9</field>
+            </shadow>
+          </value>
+          <value name="BY">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+        </block>
         <block type="controls_forEach"></block>
         <block type="controls_flow_statements"></block>
       </category>
-      <category name="Logic">
+      <category name="Logic" colour="%{BKY_LOGIC_HUE}">
         <block type="logic_compare"></block>
         <block type="logic_operation"></block>
         <block type="logic_negate"></block>
         <block type="logic_boolean"></block>
         <block type="logic_ternary"></block>
       </category>
-      <category name="Math">
+      <category name="Math" colour="%{BKY_MATH_HUE}">
         <block type="math_number">
           <field name="NUM">0</field>
         </block>
-        <block type="math_arithmetic"></block>
-        <block type="math_single"></block>
-        <block type="math_trig"></block>
-        <block type="math_constant"></block>
-        <block type="math_number_property"></block>
-        <block type="math_change"></block>
-        <block type="math_round"></block>
+        <block type="math_arithmetic">
+          <value name="A">
+            <shadow type="math_number"></shadow>
+          </value>
+            <value name="B">
+              <shadow type="math_number"></shadow>
+            </value>
+        </block>
+        <block type="math_single">
+          <value name="NUM">
+            <shadow type="math_number"></shadow>
+          </value>
+        </block>
+        <block type="math_trig">
+        </block>
+        <block type="math_constant">
+        </block>
+        <block type="math_number_property">
+        </block>
+        <block type="math_negate">
+        </block>
+        <block type="math_change">
+        </block>
+        <block type="math_round">
+          <value name="NUM">
+            <shadow type="math_number"></shadow>
+          </value></block>
         <block type="math_on_list"></block>
         <block type="math_modulo"></block>
         <block type="math_constrain"></block>
@@ -73,42 +134,108 @@
         <block type="math_random_float"></block>
         <block type="math_atan2"></block>
       </category>
-      <category name="Text">
-        <block type="text"></block>
-        <block type="text_print"></block>
+      <category name="Text" colour="%{BKY_TEXTS_HUE}">
+        <block type="text">
+          <field name="TEXT">foo</field>
+        </block>
+        <block type="text_print">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">bar</field>
+            </shadow>
+          </value>
+        </block>
         <block type="text_multiline"></block>
         <block type="text_join"></block>
-        <!--<block type="text_create_join_item"></block>
-        <block type="text_create_join_container"></block>-->
-        <block type="text_length"></block>
-        <block type="text_append"></block>
-        <block type="text_isEmpty"></block>
-        <block type="text_indexOf"></block>
+        <block type="text_length">
+          <value name="VALUE">
+            <shadow type="text">
+              <field name="TEXT">foobar</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_append">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">in the end</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_isEmpty">
+          <value name="VALUE">
+            <shadow type="text">
+              <field name="TEXT">not nothing</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_indexOf">
+          <value name="VALUE">
+            <shadow type="text">
+              <field name="TEXT">something</field>
+            </shadow>
+          </value>
+          <value name="FIND">
+            <shadow type="text">
+              <field name="TEXT">t</field>
+            </shadow>
+          </value>
+        </block>
         <block type="text_charAt"></block>
-        <block type="text_getSubstring"></block>
-        <block type="text_changeCase"></block>
-        <block type="text_trim"></block>
-        <block type="text_prompt_ext"></block>
-        <block type="text_prompt"></block>
+        <block type="text_getSubstring">
+          <value name="STRING">
+            <shadow type="text">
+              <field name="TEXT">foo 1,foo 2,foo 3</field>
+            </shadow>
+          </value>
+          <value name="AT1">
+            <shadow type="math_number">
+              <field name="NUM">9</field>
+            </shadow>
+          </value>
+          <value name="AT2">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_changeCase">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">too small</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_trim">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">   to much white space    </field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_prompt_ext">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">¿qué?</field>
+            </shadow>
+          </value>
+        </block>
+        <!--block type="text_prompt"></block-->
         <block type="text_count"></block>
-        <block type="text_replace"></block>
-        <block type="text_reverse"></block>
+        <block type="text_replace">
+        </block>
+        <block type="text_reverse"><value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">oof</field>
+          </shadow>
+        </value></block>
       </category>
-      <category name="Color">
+      <category name="Color" colour="%{BKY_COLOR_HUE}">
         <block type="color_picker"></block>
         <block type="color_random"></block>
         <block type="color_rgb"></block>
         <block type="color_blend"></block>
       </category>
-      <category name="Other">
-        <block type="logic_null"></block>
-<!--        <block type="variables_get"></block>
-        <block type="variables_set"></block>
-        <block type="variables_get_dynamic"></block>
-        <block type="variables_set_dynamic"></block>
--->
-      </category>
-      <category name="List">
+      <category name="List" colour="%{BKY_LISTS_HUE}">
         <block type="lists_create_empty"></block>
         <block type="lists_create_with"></block>
         <block type="lists_getIndex"></block>
@@ -118,14 +245,34 @@
         <block type="lists_isEmpty"></block>
         <block type="lists_length"></block>
       </category>
-      <category name="Variables" custom="VARIABLE">
+      <sep></sep>
+      <category name="Variables" custom="VARIABLE" colour="%{BKY_VARIABLES_HUE}">
       </category>
-      <category name="Functions" custom="PROCEDURE">
+      <category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
+
+      </category>
+      <sep></sep>
+      <category name="Other">
+        <block type="no_use"></block>
+
+        <block type="logic_null"></block>
+        <!--block type="controls_repeat"></block-->
+<!--        <block type="variables_get"></block>
+        <block type="variables_set"></block>
+        <block type="variables_get_dynamic"></block>
+        <block type="variables_set_dynamic"></block>
+-->
+<!--<block type="text_create_join_item"></block>
+<block type="text_create_join_container"></block>--><!--
+<block type="controls_if_if"></block>
+<block type="controls_if_elseif"></block>
+<block type="controls_if_else"></block>--><!--block type="controls_repeat_ext">
+</block-->        <!--block type="controls_ifelse"></block-->
+
       </category>
       <category name="Export">
       </category>
     </xml>
-    <textarea id="textarea" style="postion:fixed;bottom:0px;width=100%;height=20%;position=absolute;"></textarea>
     <script>
       const ClientHttp = new XMLHttpRequest();
       const url = 'http://127.0.0.1:3000/';
@@ -146,5 +293,9 @@
       }
       workspace.addChangeListener(myUpdateFunction);
     </script>
+    <div style="width:100%;height:80%;">
+    </div>
+
+    <textarea id="textarea" style="width=100%;height=20%;"></textarea>
   </body>
 </html>

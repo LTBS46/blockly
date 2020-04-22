@@ -82,7 +82,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
   // Block for 'do while/until' loop.
   {
     "type": "controls_whileUntil",
-    "message0": "%1 %2",
+    "inputsInline": true,
+    "message0": "%1(%2){%3%4}",
     "args0": [
       {
         "type": "field_dropdown",
@@ -96,13 +97,14 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
         "type": "input_value",
         "name": "BOOL",
         "check": "Boolean"
+      },{
+        "type": "input_dummy"
+      },
+      {
+        "type": "input_statement",
+        "name": "DO"
       }
     ],
-    "message1": "%{BKY_CONTROLS_REPEAT_INPUT_DO} %1",
-    "args1": [{
-      "type": "input_statement",
-      "name": "DO"
-    }],
     "previousStatement": null,
     "nextStatement": null,
     "style": "loop_blocks",
@@ -117,25 +119,32 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       {
         "type": "field_variable",
         "name": "VAR",
-        "variable": null
+        "variable": "i"
       },
       {
         "type": "input_value",
         "name": "FROM",
-        "check": "Number",
-        "align": "RIGHT"
+        "check": "Number"
+      },
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "i"
       },
       {
         "type": "input_value",
         "name": "TO",
-        "check": "Number",
-        "align": "RIGHT"
+        "check": "Number"
+      },
+      {
+        "type": "field_variable",
+        "name": "VAR",
+        "variable": "i"
       },
       {
         "type": "input_value",
         "name": "BY",
-        "check": "Number",
-        "align": "RIGHT"
+        "check": "Number"
       }
     ],
     "message1": "%{BKY_CONTROLS_REPEAT_INPUT_DO} %1",

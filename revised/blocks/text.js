@@ -46,7 +46,7 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "helpUrl": "%{BKY_TEXT_TEXT_HELPURL}",
     "tooltip": "%{BKY_TEXT_TEXT_TOOLTIP}",
     "extensions": [
-      "text_quotes",
+//      "text_quotes",
       "parent_tooltip_when_inline"
     ]
   },
@@ -577,7 +577,7 @@ Blockly.Blocks['text_reverse'] = {
         }
       ],
       "output": "String",
-      "inputsInline": true,
+      "inputsInline": false,
       "style": "text_blocks",
       "tooltip": Blockly.Msg['TEXT_REVERSE_TOOLTIP'],
       "helpUrl": Blockly.Msg['TEXT_REVERSE_HELPURL']
